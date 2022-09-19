@@ -7,9 +7,12 @@ export default class ProductApi {
     }
 
     public static async show(req: any, res: any) {
-        const { id } = req.params;
-        const product = await PrismaConnector.prisma.product.findFirst({
-            where: { id } });
+        const { productId } = req.params;
+        const product = await PrismaConnector.prisma.product.findUnique({
+            where: { 
+                id: parseInt(productId),
+            }, 
+        });
         res.json(product);
     }
 
