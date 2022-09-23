@@ -1,9 +1,12 @@
+import express from 'express';
 import ProductApi from '../apis/ProductApi';
 
 class ProductRouter{
-    public static initialize(router:any){
+    public static initialize(){
+        const router = express.Router();
+
         router.get("/", ProductApi.list);
-        router.get("/show/:productId", ProductApi.show);
+        router.get("/:productId", ProductApi.show);
 
         return router;
     }   
